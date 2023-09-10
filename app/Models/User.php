@@ -18,6 +18,22 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+    
+
+    public function hasRole($role)
+    {
+        return $this->roles->contains('name', $role);
+    }
+
+    public function hasAnyRole(...$roles)
+    {
+        return $this->roles->whereIn('name', $roles)->count() > 0;
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -54,4 +70,6 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+
 }

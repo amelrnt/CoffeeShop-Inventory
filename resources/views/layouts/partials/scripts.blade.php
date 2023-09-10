@@ -8,5 +8,6 @@
 
 @livewireScripts
 <script src="{{ asset('/js/main.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 {{ $script ?? ''}}
